@@ -26,7 +26,6 @@ connection.connect((err) =>{
 const {crearConfigBaseDades} = require('./db.config');
 const baseDades = crearConfigBaseDades();
 const {initModels} = require( "../../models/init-models");
-const {where} = require("sequelize");
 const bdd = initModels(baseDades);
 
 app.post('/modifCorreuCerrato', (req, res) => {
@@ -34,7 +33,6 @@ app.post('/modifCorreuCerrato', (req, res) => {
 });
 
 app.get('/llistaAssigCerrato', async (req, res) => {
-   let departamento = 'INFORMATICA I MATEMATICA APLICADA'
     const resultado = await connection.execute(`
       SELECT ASSIG_CODI, ASSIG_NOM
       FROM ASSIGNATURES
