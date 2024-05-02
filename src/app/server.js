@@ -38,19 +38,20 @@ app.get('/llistaAssigCerrato', async (req, res) => {
       FROM ASSIGNATURES
       JOIN PROFESSOR  ON ASSIG_DNI_PROFESSOR_RESP = PROF_DNI
       JOIN DEPARTAMENT  ON PROF_DEPT_CODI = DEPT_CODI
-      WHERE DEPT_NOM = 'INFORMATICA I MATEMATICA APLICADA'`);
+      WHERE PROF_DEPT_CODI = 1`);
     res.json(resultado[0]);
     console.log(resultado[0]);
 });
 
 app.put('/modifDeptCerrato', async (req, res) => {
   const departament = req.body
+  const cosa = 2
   console.log(departament)
   try {
-    await bdd.departament.update(departament, {where: {DEPT_CODI: req.body.DEPT_CODI}})
-    res.json("A lo hecho pecho!");
+    await bdd.departament.update(departament, {where: {DEPT_CODI: req.departament.DEPT_CODI}})
+    console.log("A lo hecho pecho!");
   }catch (err) {
-    console.log("No puc, pelacanyes!")
+    console.log(err, "No puc, pelacanyes!")
   }})
 
 app.get('/impartirAssigCerrato', async (req, res) => {
